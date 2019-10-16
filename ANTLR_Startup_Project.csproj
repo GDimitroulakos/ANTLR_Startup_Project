@@ -43,11 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="first.g4.lexer.cs">
+      <DependentUpon>first.g4</DependentUpon>
+    </Compile>
+    <Compile Include="first.g4.parser.cs">
+      <DependentUpon>first.g4</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Antlr4 Include="first.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>ANTLR_Startup_Project</CustomToolNamespace>
+    </Antlr4>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
