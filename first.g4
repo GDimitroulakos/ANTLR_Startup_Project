@@ -5,7 +5,12 @@ grammar first;
  */
 
 compileUnit
-	:	EOF
+	:	(expr ';')+
+	;
+
+expr
+	: NUMBER 
+	| expr '+' expr
 	;
 
 /*
@@ -13,5 +18,9 @@ compileUnit
  */
 
 WS
-	:	' ' -> channel(HIDDEN)
+	:	' ' -> skip
 	;
+
+NUMBER 
+		: '0' | [1-9] [0-9]*
+		;
