@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,27 @@ namespace ANTLR_Startup_Project {
             outFile.WriteLine("}");
             m_labels.Pop();
             outFile.Close();
+
+            // Prepare the process dot to run
+            ProcessStartInfo start = new ProcessStartInfo();
+            // Enter in the command line arguments, everything you would enter after the executable name itself
+            start.Arguments = "-Tgif " +
+                              Path.GetFileName("test.dot") + " -o " +
+                              Path.GetFileNameWithoutExtension("test") + ".gif";
+            // Enter the executable to run, including the complete path
+            start.FileName = "dot";
+            // Do you want to show a console window?
+            start.WindowStyle = ProcessWindowStyle.Hidden;
+            start.CreateNoWindow = true;
+            int exitCode;
+
+            // Run the external process & wait for it to finish
+            using (Process proc = Process.Start(start)) {
+                proc.WaitForExit();
+
+                // Retrieve the app's exit code
+                exitCode = proc.ExitCode;
+            }
             return 0;
         }
 
