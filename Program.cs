@@ -24,6 +24,9 @@ namespace ANTLR_Startup_Project
 
             IParseTree tree =parser.compileUnit();
 
+            GraphvizPrinterVisitor printer = new GraphvizPrinterVisitor();
+            printer.Visit(tree);
+
             Console.WriteLine(tree.ToStringTree());
 
         }
