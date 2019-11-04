@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASTElement.cs" />
+    <Compile Include="ASTElementConcrete.cs" />
     <Compile Include="first.g4.lexer.cs">
       <DependentUpon>first.g4</DependentUpon>
     </Compile>
