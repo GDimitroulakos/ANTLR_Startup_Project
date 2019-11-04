@@ -13,7 +13,9 @@ namespace ANTLR_Startup_Project {
         NT_SUBSTRACTION = 3,
         NT_MULTIPLICATION = 5,
         NT_DIVISION = 7,
-        NT_NUMBER = 9
+        NT_ASSIGNMENT=9,
+        NT_NUMBER=11 ,
+        NT_IDENTIFIER=12
     };
 
     public enum contextType {
@@ -26,7 +28,9 @@ namespace ANTLR_Startup_Project {
         CT_MULTIPLICATION_LEFT,
         CT_MULTIPLICATION_RIGHT,
         CT_DIVISION_LEFT,
-        CT_DIVISION_RIGHT
+        CT_DIVISION_RIGHT,
+        CT_ASSIGNMENT_LEFT,
+        CT_ASSIGNMENT_RIGHT
     };
 
     public abstract class ASTElement {
