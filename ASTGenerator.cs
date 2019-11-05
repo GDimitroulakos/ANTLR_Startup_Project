@@ -10,8 +10,24 @@ namespace ANTLR_Startup_Project {
 
         Stack<ASTElement> m_parents = new Stack<ASTElement>();
 
-        public override int VisitExpr_MULDIV(firstParser.Expr_MULDIVContext context) {
-            return base.VisitExpr_MULDIV(context);
+        public override int VisitExpr_MULDIV(firstParser.Expr_MULDIVContext context)
+        {
+
+            if (context.op.Type == firstParser.DIV)
+            {
+                CASTDivision newnode = new CASTDivision(nodeType.NT_DIVISION, m_parents.Peek(), 2);
+                m_parents.Push(newnode);
+            }
+            else if (context.op.Type == firstParser.MULT)
+            {
+                CASTMultiplication newnode = new CASTMultiplication(nodeType.NT_MULTIPLICATION, m_parents.Peek(), 2);
+                m_parents.Push(newnode);
+            }
+
+            base.VisitExpr_MULDIV(context);
+
+            m_parents.Pop();
+            return 0;
         }
 
         public override int VisitExpr_PLUSMINUS(firstParser.Expr_PLUSMINUSContext context) {
@@ -51,8 +67,10 @@ namespace ANTLR_Startup_Project {
             return 0;
         }
 
-        public override int VisitTerminal(ITerminalNode node) {
+        public override int VisitTerminal(ITerminalNode node) { 
             return base.VisitTerminal(node);
+
+            // TODO: Finish?
         }
     }
 }
