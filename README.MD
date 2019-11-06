@@ -17,7 +17,6 @@
 > 	> A *VisitChildren()* method has been added.
 > ***
 ## Intro: How to Prepare Visual Studio for ANTLR4 Projects
-_________________
 1. Open **_Tools -> Extensions and Updates_**
 2. Go to _**Online**_, Search and Download **_Antlr4Code, GitHub Extension for Visual Studio_**
 3. Close Visual Studio and, modify it -as the newly created window that popped asks-.
