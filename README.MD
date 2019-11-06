@@ -1,6 +1,5 @@
 > _________________
 > ## Weekly Updates:
-> _________________
 > - 6/11/2019  
 > 	### Partial Implemented Step 13
 > 
@@ -25,4 +24,4 @@ _________________
 4. Re-open Visual Studio. Go to _**Github**_.
 5. Login using your Creds, On the next window, paste [this url](https://github.com/dhmhgreCompilersII/ANTLR_Startup_Project) and then **_Clone_**.
 
-> ### _To Be Continued_...
+> ### *To Be Continued*...
