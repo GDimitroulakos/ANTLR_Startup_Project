@@ -54,12 +54,12 @@
       <DependentUpon>first.g4</DependentUpon>
     </Compile>
     <Compile Include="GraphvizPrinterVisitor.cs" />
-    <Compile Include="obj\Debug\firstBaseListener.cs" />
-    <Compile Include="obj\Debug\firstBaseVisitor.cs" />
-    <Compile Include="obj\Debug\firstLexer.cs" />
-    <Compile Include="obj\Debug\firstListener.cs" />
-    <Compile Include="obj\Debug\firstParser.cs" />
-    <Compile Include="obj\Debug\firstVisitor.cs" />
+    <None Include="obj\Debug\firstBaseListener.cs" />
+    <None Include="obj\Debug\firstBaseVisitor.cs" />
+    <None Include="obj\Debug\firstLexer.cs" />
+    <None Include="obj\Debug\firstListener.cs" />
+    <None Include="obj\Debug\firstParser.cs" />
+    <None Include="obj\Debug\firstVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

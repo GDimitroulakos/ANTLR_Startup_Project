@@ -27,6 +27,9 @@ namespace ANTLR_Startup_Project
             GraphvizPrinterVisitor printer = new GraphvizPrinterVisitor();
             printer.Visit(tree);
 
+            ASTGenerator astGenerator = new ASTGenerator();
+            astGenerator.Visit(tree);
+
             Console.WriteLine(tree.ToStringTree());
 
         }
