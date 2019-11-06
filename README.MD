@@ -17,7 +17,6 @@
 > 
 > 	> A *VisitChildren()* method has been added.
 > ***
-_________________
 ## Intro: How to Prepare Visual Studio for ANTLR4 Projects
 _________________
 1. Open **_Tools -> Extensions and Updates_**
