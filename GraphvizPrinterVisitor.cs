@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 
 namespace ANTLR_Startup_Project {
     class GraphvizPrinterVisitor : firstBaseVisitor<int> {
@@ -54,7 +55,7 @@ namespace ANTLR_Startup_Project {
             return 0;
         }
 
-        public override int VisitExpr([NotNull] firstParser.ExprContext context) {
+        /*public override int VisitExpr([NotNull] firstParser.ExprContext context) {
 
             int serial = ms_serialCounter++;
             string s = "Expr_" + serial;
@@ -67,6 +68,97 @@ namespace ANTLR_Startup_Project {
 
             m_labels.Pop();
             return 0;
+        }*/
+
+        public override int VisitExpr_MULDIV(firstParser.Expr_MULDIVContext context)
+        {
+            int serial = ms_serialCounter++;
+            string s="";
+            switch (context.op.Type)
+            {
+                case firstParser.MULT:
+                    s = "Mult_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                case firstParser.DIV:
+                    s = "Div_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                default:
+                    break;
+            }
+           
+            m_labels.Push(s);
+
+            base.VisitChildren(context);
+
+            m_labels.Pop();
+            return 0;
+        }
+
+        public override int VisitExpr_PLUSMINUS(firstParser.Expr_PLUSMINUSContext context){
+            int serial = ms_serialCounter++;
+            string s = "";
+            switch (context.op.Type) {
+                case firstParser.PLUS:
+                    s = "Plus_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                case firstParser.MINUS:
+                    s = "Minus_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                default:
+                    break;
+            }
+           
+            m_labels.Push(s);
+
+            base.VisitChildren(context);
+
+            m_labels.Pop();
+            return 0;
+        }
+
+        public override int VisitExpr_ASSIGNMENT(firstParser.Expr_ASSIGNMENTContext context)
+        {
+            int serial = ms_serialCounter++;
+            string s = "Assign_" + serial;
+            // Preorder action
+            outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+
+            m_labels.Push(s);
+
+            base.VisitChildren(context);
+
+            m_labels.Pop();
+            return 0;
+        }
+
+        public override int VisitTerminal(ITerminalNode node){
+
+            int serial = ms_serialCounter++;
+            string s = "";
+            switch (node.Symbol.Type) {
+                case firstLexer.NUMBER:
+                    s = "NUMBER_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                case firstLexer.IDENTIFIER:
+                    s = "IDENTIFIER_" + serial;
+                    // Preorder action
+                    outFile.WriteLine("\"{0}\"->\"{1}\";", m_labels.Peek(), s);
+                    break;
+                default:
+                    break;
+            }
+           
+           return base.VisitTerminal(node);
         }
     }
 }

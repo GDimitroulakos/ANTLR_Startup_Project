@@ -8,6 +8,10 @@ namespace ANTLR_Startup_Project {
 
     public class CASTIDENTIFIER : ASTComposite {
         public CASTIDENTIFIER(nodeType type, ASTElement parent, int numContexts) : base(type, parent, numContexts) { }
+
+        public override T Accept<T>(ASTBaseVisitor<T> visitor){
+            return visitor.VisitIDENTIFIER(this);
+        }
     }
 
     public class CASTNUMBER : ASTComposite {

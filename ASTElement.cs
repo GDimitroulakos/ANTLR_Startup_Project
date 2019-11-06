@@ -46,6 +46,8 @@ namespace ANTLR_Startup_Project {
             return "_" + m_serial;
         }
 
+        public abstract T Accept<T>(ASTBaseVisitor<T> visitor);
+
         public ASTElement MParent {
             get { return m_parent; }
         }
@@ -62,6 +64,9 @@ namespace ANTLR_Startup_Project {
 
     public abstract class ASTComposite : ASTElement {
         private List<ASTElement>[] m_children;
+
+        public List<ASTElement>[] MChildren => m_children;
+
         protected ASTComposite(nodeType type, ASTElement parent, int numContexts) : base(type, parent) {
             m_children = new List<ASTElement>[numContexts];
         }
