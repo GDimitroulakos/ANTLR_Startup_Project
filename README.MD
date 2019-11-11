@@ -78,12 +78,12 @@ expr
 
 | Αρχείο                       | Εξήγηση                                                       |
 | -----------------------------|:-------------------------------------------------------------:|
-| `grammar_Name`Lexer.cs       | Περιέχει την κλάση του lexer.        			       |
-| `grammar_Name`Parser.cs      | Περιέχει την κλάση του Parser        			       |
-| `grammar_Name`BaseVisitor.cs | Εδώ υλοποιείται η αφηρημένη βασική κλάση των κόμβων.          |
-| `grammar_Name`Visitor.cs     | Εδώ υλοποιείται το βασικό interface των κόμβων.               |
-| `grammar_Name`BaseListener.cs| --- Αδιάφορο προς το παρόν ---				       |
-| `grammar_Name`Listener.cs    | --- Αδιάφορο προς το παρόν ---				       |
+| `project_name`Lexer.cs       | Περιέχει την κλάση του lexer.        			       |
+| `project_name`Parser.cs      | Περιέχει την κλάση του Parser        			       |
+| `project_name`BaseVisitor.cs | Εδώ υλοποιείται η αφηρημένη βασική κλάση των κόμβων.          |
+| `project_name`Visitor.cs     | Εδώ υλοποιείται το βασικό interface των κόμβων.               |
+| `project_name`BaseListener.cs| --- Αδιάφορο προς το παρόν ---				       |
+| `project_name`Listener.cs    | --- Αδιάφορο προς το παρόν ---				       |
 
 
 > Ο λόγος ύπαρξης των ζευγών "BaseVisitor/Visitor" και "BaseListener/Listener" αφορά την ασφάλεικαι πολλούς άλλους, πλην αδιάφορους (προς το παρόν) λόγους.
