@@ -45,31 +45,46 @@ grammar first;
 [ Lexer Rules Here ]
 ```
 
-Οι γραμματικοί κανόνες έχουν τη μορφή:
+---
 
-```
-rule : expression_of_tokens_and_characters		#expr_RULE_NAME
-	 ;
-```
-ή
-```
-rule : expression_of_tokens_and_characters		#expr_SUB_RULE_1_NAME
-     | some_other_expression_of_tokens_and_characters	#expr_SUB_RULE_2_NAME
-     [...]
-     ;
-```
+Οι γραμματικοί κανόνες ξεκινούν πάντα με πεζό γράμμα και έχουν τη μορφή:
+
+> ```
+> rule : expression_of_tokens_and_characters		#expr_RULE_NAME
+> 	 ;
+> ```
+> ή
+> ```
+> rule : expression_of_tokens_and_characters		#expr_SUB_RULE_1_NAME
+>      | some_other_expression_of_tokens_and_characters	#expr_SUB_RULE_2_NAME
+>      [...]
+>      ;
+> ```
 
 Για παράδειγμα:
-```
-expr
-	: NUMBER					#expr_NUMBER
-	| IDENTIFIER					#expr_IDENTIFIER
-	| expr op=('*'|'/') expr			#expr_MULDIV
-	| expr op=('+'|'-') expr			#expr_PLUSMINUS
-	| IDENTIFIER '=' expr				#expr_ASSIGNMENT
-	| '(' expr ')'					#expr_PARENTHESIZED
-	;
-```
+> ```
+> expr
+> 	: NUMBER					#expr_NUMBER
+> 	| IDENTIFIER					#expr_IDENTIFIER
+> 	| expr op=('*'|'/') expr			#expr_MULDIV
+> 	| expr op=('+'|'-') expr			#expr_PLUSMINUS
+> 	| IDENTIFIER '=' expr				#expr_ASSIGNMENT
+> 	| '(' expr ')'					#expr_PARENTHESIZED
+> 	;
+> ```
+
+---
+
+Οι Συντακτικοί κανόνες ξεκινούν πάντα με κεφαλαίο γράμμα και έχουν τη μορφή:
+
+> ```
+> TOKEN : some_regex_expression;
+> ```
+
+Για παράδειγμα:
+> ```
+> MULT : '*' ;
+> ```
 
 ## Μόλις έκανα compile το g4 αρχείο, Τι συνέβη τώρα;
 Το `.g4` αρχείο γίνεται parse απο τον μηχανισμό του antlr4 και δημιουργεί τις κλάσεις και τις μεθόδους που χρειαζόμαστε προκειμένου να υλοποιήσουμε έναν δικό μας μεταγλωττιστή.
