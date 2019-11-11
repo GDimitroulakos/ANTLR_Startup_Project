@@ -1,23 +1,21 @@
-> _________________
-> ## Weekly Updates:
-> - 6/11/2019  
-> 	### Partial Implemented Step 13
+> ### Weekly Updates:
+> -  **6/11/2019 : Μερική υλοποίηση του βήματος 13**
+>     #### Κλάση ASTElement		
+>     > Προστέθηκε η public abstract μέθοδος *Generic Accept* στο _**ASTElement**_
 > 
-> 	**ASTElement**			
-> 	> A public abstract *Generic Accept* method has been added into the _**ASTElement**_
+>     #### Κλάση ASTElementConcrete
+>     > Υλοποιήθηκε η μέθοδος *Accept* για τον κόμβο *CASTIDENTIFIER*. 
+>     > 
+>     > **`HOMEWORK :`**` Υλοποιήστε την `*`Accept`*` μέθοδο για τους υπόλοιπους κόμβους .`
 > 
-> 	**ASTElementConcrete**
-> 	> *Accept* method has been implemented for the *CASTIDENTIFIER* node. 
-> 	>> **HOMEWORK :** Do the same for the others.
+>     #### Κλάση ASTBaseVisitor
+>     > Προστέθηκε μία *Visit<Type>* μέθοδος για μερικούς *AST κόμβους* (σύμφωνα με τον enumerated nodeType τύπο, στο *ASTElement.cs*).
+>     > 
+>     > **`HOMEWORK :`**` Υλοποιείστε `*`Visit<Type>`*`μεθόδους για τους υπόλοιπους AST Κόμβους.`
+>     > 
+>     > Επίσης προστέθηκε μία *VisitChildren()* μέθοδος.)
 > 
-> 	**ASTBaseVisitor**
-> 	> A *Visit<Type>* method for each type of *AST Node* (described in the public enum nodeType in the *ASTElement.cs*) has been added.
-> 	>> **HOMEWORK :** Do the same for the others.
-> 
-> 	> A *VisitChildren()* method has been added.
-> ***
-
----
+> ---
 
 # Δομή ενός ANTLR4 Project
 
