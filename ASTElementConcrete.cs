@@ -19,8 +19,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitNUMBER(this);
+            // DONE!
         }
     }
     public class CASTAddition : ASTComposite {
@@ -28,8 +28,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitAddition(this);
+            // DONE!
         }
     }
 
@@ -38,8 +38,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitSubtraction(this);
+            // DONE!
         }
     }
 
@@ -48,8 +48,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitMultiplication(this);
+            // DONE!
         }
     }
     public class CASTDivision : ASTComposite {
@@ -57,8 +57,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitDivision(this);
+            // DONE!
         }
     }
    public class CASTAssignment : ASTComposite {
@@ -66,8 +66,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitAssignment(this);
+            // DONE!
         }
     }
 
@@ -76,8 +76,8 @@ namespace ANTLR_Startup_Project {
 
         public override T Accept<T>(ASTBaseVisitor<T> visitor)
         {
-            //return visitor.VisitNUMBER(this);
-            return default(T);
+            return visitor.VisitCompileUnit(this);
+            // DONE!
         }
     }
 
