@@ -66,8 +66,8 @@ namespace ANTLR_Startup_Project {
             m_parent.AddChild(newnode, m_parentContext.Peek());
             m_parents.Push(newnode);
 
-            this.VisitTerminalInContext(context,context.IDENTIFIER().Symbol, m_parentContext, contextType.CT_ADDITION_LEFT);
-            this.VisitElementInContext(context.expr(), m_parentContext, contextType.CT_ADDITION_RIGHT);
+            this.VisitTerminalInContext(context,context.IDENTIFIER().Symbol, m_parentContext, contextType.CT_ASSIGNMENT_LEFT);
+            this.VisitElementInContext(context.expr(), m_parentContext, contextType.CT_ASSIGNMENT_RIGHT);
 
             m_parents.Pop();
             return 0;
