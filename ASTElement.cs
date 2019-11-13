@@ -69,18 +69,21 @@ namespace ANTLR_Startup_Project {
 
         protected ASTComposite(nodeType type, ASTElement parent, int numContexts) : base(type, parent) {
             m_children = new List<ASTElement>[numContexts];
+            for (int i = 0; i < numContexts; i++) {
+                m_children[i] = new List<ASTElement>();
+            }
         }
 
-        protected int GetContextIndex(contextType ct) {
+        internal int GetContextIndex(contextType ct) {
             return (int)ct - (int)MNodeType;
         }
 
-        protected void AddChild(ASTElement child, contextType ct) {
+        internal void AddChild(ASTElement child, contextType ct) {
             int index = GetContextIndex(ct);
             m_children[index].Add(child);
         }
 
-        protected ASTElement GetChild(contextType ct, int index) {
+        internal ASTElement GetChild(contextType ct, int index) {
             int i = GetContextIndex(ct);
             return m_children[i][index];
         }

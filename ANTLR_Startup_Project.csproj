@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ANTLRExtensions.cs" />
     <Compile Include="ASTBaseVisitor.cs" />
     <Compile Include="ASTElement.cs" />
     <Compile Include="ASTElementConcrete.cs" />
@@ -81,6 +82,9 @@
     <PackageReference Include="Antlr4.Runtime">
       <Version>4.6.6</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
