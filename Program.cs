@@ -24,8 +24,14 @@ namespace ANTLR_Startup_Project
 
             IParseTree tree =parser.compileUnit();
 
-            GraphvizPrinterVisitor printer = new GraphvizPrinterVisitor();
-            printer.Visit(tree);
+            GraphvizPrinterVisitor ptPrinter = new GraphvizPrinterVisitor();
+            ptPrinter.Visit(tree);
+
+            ASTGenerator astGenerator = new ASTGenerator();
+            astGenerator.Visit(tree);
+
+            ASTPrinter astPrinter = new ASTPrinter("test.dot");
+            astPrinter.Visit(astGenerator.M_Root);
 
             ASTGenerator astGenerator = new ASTGenerator();
             astGenerator.Visit(tree);

@@ -38,12 +38,13 @@ namespace ANTLR_Startup_Project {
         private static int ms_serialCounter = 0;
         private nodeType m_nodeType;
         private ASTElement m_parent;
-        private string m_nodeName;
+        protected string m_nodeName;
+        protected string m_text;
 
         public nodeType MNodeType => m_nodeType;
 
         public virtual string GenerateNodeName() {
-            return "_" + m_serial;
+            return "\""+m_nodeType +"_" + m_serial+ "\"";
         }
 
         public abstract T Accept<T>(ASTBaseVisitor<T> visitor);
@@ -53,12 +54,13 @@ namespace ANTLR_Startup_Project {
         }
 
         public string MNodeName => m_nodeName;
+        public int MSerial => m_serial;
 
-        protected ASTElement(nodeType type, ASTElement parent) {
+        protected ASTElement(string text,nodeType type, ASTElement parent) {
             m_nodeType = type;
             m_parent = parent;
             m_serial = ms_serialCounter++;
-            m_nodeName = GenerateNodeName();
+            m_text = text;
         }
     }
 
@@ -67,27 +69,31 @@ namespace ANTLR_Startup_Project {
 
         public List<ASTElement>[] MChildren => m_children;
 
-        protected ASTComposite(nodeType type, ASTElement parent, int numContexts) : base(type, parent) {
+        protected ASTComposite(string text,nodeType type, ASTElement parent, int numContexts) : base(text,type, parent) {
             m_children = new List<ASTElement>[numContexts];
+            for (int i = 0; i < numContexts; i++) {
+                m_children[i] = new List<ASTElement>();
+            }
+            m_nodeName = GenerateNodeName();
         }
 
-        protected int GetContextIndex(contextType ct) {
+        internal int GetContextIndex(contextType ct) {
             return (int)ct - (int)MNodeType;
         }
 
-        protected void AddChild(ASTElement child, contextType ct) {
+        internal void AddChild(ASTElement child, contextType ct) {
             int index = GetContextIndex(ct);
             m_children[index].Add(child);
         }
 
-        protected ASTElement GetChild(contextType ct, int index) {
+        internal ASTElement GetChild(contextType ct, int index) {
             int i = GetContextIndex(ct);
             return m_children[i][index];
         }
     }
 
     public abstract class ASTTerminal : ASTElement {
-        protected ASTTerminal(nodeType type, ASTElement parent) : base(type, parent) {
+        protected ASTTerminal(string text,nodeType type, ASTElement parent) : base(text,type, parent) {
 
         }
 
