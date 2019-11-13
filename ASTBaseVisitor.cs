@@ -27,13 +27,41 @@ namespace ANTLR_Startup_Project {
             VisitChildren(node);
             return default(T);
         }
-        /*NT_COMPILEUNIT = 0,
-        NT_ADDITION = 1,
-        NT_SUBSTRACTION = 3,
-        NT_MULTIPLICATION = 5,
-        NT_DIVISION = 7,
-        NT_ASSIGNMENT=9,
-        NT_NUMBER=11 ,
-        NT_IDENTIFIER=12 */
+
+        public virtual T VisitNUMBER(CASTNUMBER node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+        public virtual T VisitCOMPILEUNIT(CASTCompileUnit node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+        public virtual T VisitAddition(CASTAddition node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+        public virtual T VisitSubtraction(CASTSubtraction node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+        public virtual T VisitMultiplication(CASTMultiplication node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+
+        public virtual T VisitDivision(CASTDivision node) {
+            VisitChildren(node);
+            return default(T);
+        }
+
+        public virtual T VisitAssignment(CASTAssignment node) {
+            VisitChildren(node);
+            return default(T);
+        }
     }
 }
