@@ -38,7 +38,8 @@ namespace ANTLR_Startup_Project {
         private static int ms_serialCounter = 0;
         private nodeType m_nodeType;
         private ASTElement m_parent;
-        private string m_nodeName;
+        protected string m_nodeName;
+        protected string m_text;
 
         public nodeType MNodeType => m_nodeType;
 
@@ -53,12 +54,13 @@ namespace ANTLR_Startup_Project {
         }
 
         public string MNodeName => m_nodeName;
+        public int MSerial => m_serial;
 
-        protected ASTElement(nodeType type, ASTElement parent) {
+        protected ASTElement(string text,nodeType type, ASTElement parent) {
             m_nodeType = type;
             m_parent = parent;
             m_serial = ms_serialCounter++;
-            m_nodeName = GenerateNodeName();
+            m_text = text;
         }
     }
 
@@ -67,11 +69,12 @@ namespace ANTLR_Startup_Project {
 
         public List<ASTElement>[] MChildren => m_children;
 
-        protected ASTComposite(nodeType type, ASTElement parent, int numContexts) : base(type, parent) {
+        protected ASTComposite(string text,nodeType type, ASTElement parent, int numContexts) : base(text,type, parent) {
             m_children = new List<ASTElement>[numContexts];
             for (int i = 0; i < numContexts; i++) {
                 m_children[i] = new List<ASTElement>();
             }
+            m_nodeName = GenerateNodeName();
         }
 
         internal int GetContextIndex(contextType ct) {
@@ -90,7 +93,7 @@ namespace ANTLR_Startup_Project {
     }
 
     public abstract class ASTTerminal : ASTElement {
-        protected ASTTerminal(nodeType type, ASTElement parent) : base(type, parent) {
+        protected ASTTerminal(string text,nodeType type, ASTElement parent) : base(text,type, parent) {
 
         }
 

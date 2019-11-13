@@ -19,7 +19,7 @@ namespace ANTLR_Startup_Project {
         public override int VisitExpr_MULDIV(firstParser.Expr_MULDIVContext context) {
             ASTComposite m_parent = m_parents.Peek();
             if (context.op.Type == firstParser.MULT) {
-                CASTMultiplication newnode = new CASTMultiplication(nodeType.NT_MULTIPLICATION, m_parents.Peek(), 2);
+                CASTMultiplication newnode = new CASTMultiplication(context.GetText(),nodeType.NT_MULTIPLICATION, m_parents.Peek(), 2);
                 m_parent.AddChild(newnode,m_parentContext.Peek());
                 m_parents.Push(newnode);
 
@@ -27,7 +27,7 @@ namespace ANTLR_Startup_Project {
                 this.VisitElementInContext(context.expr(1), m_parentContext, contextType.CT_MULTIPLICATION_RIGHT);
             }
             else if (context.op.Type == firstParser.DIV) {
-                CASTDivision newnode = new CASTDivision(nodeType.NT_DIVISION, m_parents.Peek(), 2);
+                CASTDivision newnode = new CASTDivision(context.GetText(),nodeType.NT_DIVISION, m_parents.Peek(), 2);
                 m_parent.AddChild(newnode, m_parentContext.Peek());
                 m_parents.Push(newnode);
 
@@ -42,7 +42,7 @@ namespace ANTLR_Startup_Project {
         public override int VisitExpr_PLUSMINUS(firstParser.Expr_PLUSMINUSContext context) {
             ASTComposite m_parent = m_parents.Peek();
             if (context.op.Type == firstParser.MINUS) {
-                CASTSubtraction newnode = new CASTSubtraction(nodeType.NT_SUBSTRACTION, m_parents.Peek(), 2);
+                CASTSubtraction newnode = new CASTSubtraction(context.GetText(), nodeType.NT_SUBSTRACTION, m_parents.Peek(), 2);
                 m_parent.AddChild(newnode, m_parentContext.Peek());
                 m_parents.Push(newnode);
 
@@ -50,7 +50,7 @@ namespace ANTLR_Startup_Project {
                 this.VisitElementInContext(context.expr(1), m_parentContext, contextType.CT_SUBSTRACTION_RIGHT);
             }
             else if (context.op.Type == firstParser.PLUS) {
-                CASTAddition newnode = new CASTAddition(nodeType.NT_ADDITION, m_parents.Peek(), 2);
+                CASTAddition newnode = new CASTAddition(context.GetText(), nodeType.NT_ADDITION, m_parents.Peek(), 2);
                 m_parent.AddChild(newnode, m_parentContext.Peek());
                 m_parents.Push(newnode);
 
@@ -64,7 +64,7 @@ namespace ANTLR_Startup_Project {
 
         public override int VisitExpr_ASSIGNMENT(firstParser.Expr_ASSIGNMENTContext context) {
             ASTComposite m_parent = m_parents.Peek();
-            CASTAssignment newnode = new CASTAssignment(nodeType.NT_ASSIGNMENT, m_parents.Peek(), 2);
+            CASTAssignment newnode = new CASTAssignment(context.GetText(), nodeType.NT_ASSIGNMENT, m_parents.Peek(), 2);
             m_parent.AddChild(newnode, m_parentContext.Peek());
             m_parents.Push(newnode);
 
@@ -76,7 +76,7 @@ namespace ANTLR_Startup_Project {
         }
 
         public override int VisitCompileUnit(firstParser.CompileUnitContext context) {
-            CASTCompileUnit newnode = new CASTCompileUnit(nodeType.NT_COMPILEUNIT, null, 1);
+            CASTCompileUnit newnode = new CASTCompileUnit(context.GetText(), nodeType.NT_COMPILEUNIT, null, 1);
             m_root = newnode;
             m_parents.Push(newnode);
 
@@ -90,11 +90,11 @@ namespace ANTLR_Startup_Project {
             ASTComposite m_parent = m_parents.Peek();
             switch (node.Symbol.Type){
                 case firstLexer.NUMBER:
-                    CASTNUMBER newnode1 = new CASTNUMBER(nodeType.NT_NUMBER,m_parents.Peek(),0);
+                    CASTNUMBER newnode1 = new CASTNUMBER(node.Symbol.Text,nodeType.NT_NUMBER,m_parents.Peek(),0);
                     m_parent.AddChild(newnode1,m_parentContext.Peek());
                     break;
                 case firstLexer.IDENTIFIER:
-                    CASTIDENTIFIER newnode2 = new CASTIDENTIFIER(nodeType.NT_IDENTIFIER, m_parents.Peek(), 0);
+                    CASTIDENTIFIER newnode2 = new CASTIDENTIFIER(node.Symbol.Text,nodeType.NT_IDENTIFIER, m_parents.Peek(), 0);
                     m_parent.AddChild(newnode2, m_parentContext.Peek());
                     break;
                 default:

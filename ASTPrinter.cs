@@ -25,8 +25,8 @@ namespace ANTLR_Startup_Project {
                 m_ostream.WriteLine("\t\tstyle=filled;");
                 m_ostream.WriteLine("\t\tcolor=lightgrey;");
                 m_ostream.Write("\t\t");
-                for (int i = 0; i < node.MChildren[0].Count; i++) {
-                    m_ostream.Write(node.MChildren[0][i].MNodeName + ";");
+                for (int i = 0; i < node.MChildren[node.GetContextIndex(context)].Count; i++) {
+                    m_ostream.Write(node.MChildren[node.GetContextIndex(context)][i].MNodeName + ";");
                 }
 
                 m_ostream.WriteLine("\n\t\tlabel=" + context + ";");
@@ -69,10 +69,12 @@ namespace ANTLR_Startup_Project {
         }
         
         public override int VisitIDENTIFIER(CASTIDENTIFIER node) {
+            m_ostream.WriteLine("{0}->{1}", node.MParent.MNodeName, node.MNodeName);
             return base.VisitIDENTIFIER(node);
         }
 
         public override int VisitNUMBER(CASTNUMBER node) {
+            m_ostream.WriteLine("{0}->{1}", node.MParent.MNodeName, node.MNodeName);
             return base.VisitNUMBER(node);
         }
 
@@ -89,15 +91,36 @@ namespace ANTLR_Startup_Project {
         }
 
         public override int VisitSubtraction(CASTSubtraction node) {
-            return base.VisitSubtraction(node);
+            ExtractSubgraphs(node, contextType.CT_SUBSTRACTION_LEFT);
+            ExtractSubgraphs(node, contextType.CT_SUBSTRACTION_RIGHT);
+
+            base.VisitSubtraction(node);
+
+            m_ostream.WriteLine("{0}->{1}", node.MParent.MNodeName, node.MNodeName);
+
+            return 0;
         }
 
         public override int VisitMultiplication(CASTMultiplication node) {
-            return base.VisitMultiplication(node);
+            ExtractSubgraphs(node, contextType.CT_MULTIPLICATION_LEFT);
+            ExtractSubgraphs(node, contextType.CT_MULTIPLICATION_RIGHT);
+
+            base.VisitMultiplication(node);
+
+            m_ostream.WriteLine("{0}->{1}", node.MParent.MNodeName, node.MNodeName);
+
+            return 0;
         }
 
         public override int VisitDivision(CASTDivision node) {
-            return base.VisitDivision(node);
+            ExtractSubgraphs(node, contextType.CT_DIVISION_LEFT);
+            ExtractSubgraphs(node, contextType.CT_DIVISION_RIGHT);
+
+            base.VisitDivision(node);
+
+            m_ostream.WriteLine("{0}->{1}", node.MParent.MNodeName, node.MNodeName);
+
+            return 0;
         }
 
         public override int VisitAssignment(CASTAssignment node) {
