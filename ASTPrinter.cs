@@ -18,23 +18,27 @@ namespace ANTLR_Startup_Project {
             m_dotName = dotFileName;
         }
 
-        public override int VisitCompileUnit(CASTCompileUnit node) {
-
-            m_ostream.WriteLine("digraph {");
-
-            if (node.MChildren[node.GetContextIndex(contextType.CT_COMPILEUNIT_EXPRESSIONS)].Count != 0) {
+        private void ExtractSubgraphs(ASTComposite node,contextType context) {
+            if (node.MChildren[node.GetContextIndex(context)].Count != 0) {
                 m_ostream.WriteLine("\tsubgraph cluster" + m_clusterSerial++ + "{");
                 m_ostream.WriteLine("\t\tnode [style=filled,color=white];");
                 m_ostream.WriteLine("\t\tstyle=filled;");
                 m_ostream.WriteLine("\t\tcolor=lightgrey;");
                 m_ostream.Write("\t\t");
                 for (int i = 0; i < node.MChildren[0].Count; i++) {
-                    m_ostream.Write(node.MChildren[0][i].MNodeName+";");
-                    
+                    m_ostream.Write(node.MChildren[0][i].MNodeName + ";");
                 }
-                m_ostream.WriteLine("\n\t\tlabel="+contextType.CT_COMPILEUNIT_EXPRESSIONS+";");
+
+                m_ostream.WriteLine("\n\t\tlabel=" + context + ";");
                 m_ostream.WriteLine("\t}");
             }
+        }
+
+        public override int VisitCompileUnit(CASTCompileUnit node) {
+
+            m_ostream.WriteLine("digraph {");
+
+            ExtractSubgraphs(node,contextType.CT_COMPILEUNIT_EXPRESSIONS);
 
             base.VisitCompileUnit(node);
 
@@ -63,7 +67,7 @@ namespace ANTLR_Startup_Project {
 
             return 0;
         }
-
+        
         public override int VisitIDENTIFIER(CASTIDENTIFIER node) {
             return base.VisitIDENTIFIER(node);
         }
@@ -74,32 +78,9 @@ namespace ANTLR_Startup_Project {
 
         public override int VisitAddition(CASTAddition node) {
 
-            if (node.MChildren[node.GetContextIndex(contextType.CT_ADDITION_LEFT)].Count != 0) {
-                m_ostream.WriteLine("\tsubgraph cluster" + m_clusterSerial++ + "{");
-                m_ostream.WriteLine("\t\tnode [style=filled,color=white];");
-                m_ostream.WriteLine("\t\tstyle=filled;");
-                m_ostream.WriteLine("\t\tcolor=lightgrey;");
-                m_ostream.Write("\t\t");
-                for (int i = 0; i < node.MChildren[0].Count; i++) {
-                    m_ostream.Write(node.MChildren[0][i].MNodeName + ";");
-                }
-                m_ostream.WriteLine("\n\t\tlabel=" + contextType.CT_ADDITION_LEFT + ";");
-                m_ostream.WriteLine("\t}");
-            }
-
-            if (node.MChildren[node.GetContextIndex(contextType.CT_ADDITION_RIGHT)].Count != 0) {
-                m_ostream.WriteLine("\tsubgraph cluster" + m_clusterSerial++ + "{");
-                m_ostream.WriteLine("\t\tnode [style=filled,color=white];");
-                m_ostream.WriteLine("\t\tstyle=filled;");
-                m_ostream.WriteLine("\t\tcolor=lightgrey;");
-                m_ostream.Write("\t\t");
-                for (int i = 0; i < node.MChildren[0].Count; i++) {
-                    m_ostream.Write(node.MChildren[0][i].MNodeName + ";");
-                }
-                m_ostream.WriteLine("\n\t\tlabel=" + contextType.CT_ADDITION_RIGHT + ";");
-                m_ostream.WriteLine("\t}");
-            }
-
+            ExtractSubgraphs(node, contextType.CT_ADDITION_LEFT);
+            ExtractSubgraphs(node, contextType.CT_ADDITION_RIGHT);
+            
             base.VisitAddition(node);
 
             m_ostream.WriteLine("{0}->{1}",node.MParent.MNodeName,node.MNodeName);
