@@ -21,9 +21,7 @@ expr
  * Lexer Rules
  */
 
-WS
-	:	' ' -> skip
-	;
+WS: [ \r\n\t]-> skip;
 MULT : '*' ;
 DIV : '/' ;
 PLUS : '+';

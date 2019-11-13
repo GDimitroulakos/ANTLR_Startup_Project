@@ -9,6 +9,8 @@ namespace ANTLR_Startup_Project {
     public class ASTGenerator : firstBaseVisitor<int> {
         private ASTComposite m_root;
 
+        public ASTComposite M_Root => m_root;
+
         Stack<ASTComposite> m_parents = new Stack<ASTComposite>();
 
         Stack<contextType> m_parentContext = new Stack<contextType>();
@@ -74,7 +76,7 @@ namespace ANTLR_Startup_Project {
         }
 
         public override int VisitCompileUnit(firstParser.CompileUnitContext context) {
-            CASTAssignment newnode = new CASTAssignment(nodeType.NT_COMPILEUNIT, null, 1);
+            CASTCompileUnit newnode = new CASTCompileUnit(nodeType.NT_COMPILEUNIT, null, 1);
             m_root = newnode;
             m_parents.Push(newnode);
 

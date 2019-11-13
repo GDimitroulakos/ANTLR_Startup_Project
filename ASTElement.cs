@@ -43,7 +43,7 @@ namespace ANTLR_Startup_Project {
         public nodeType MNodeType => m_nodeType;
 
         public virtual string GenerateNodeName() {
-            return "_" + m_serial;
+            return "\""+m_nodeType +"_" + m_serial+ "\"";
         }
 
         public abstract T Accept<T>(ASTBaseVisitor<T> visitor);

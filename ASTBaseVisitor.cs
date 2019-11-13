@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace ANTLR_Startup_Project {
     public abstract class ASTBaseVisitor<T> {
 
+        public T Visit(ASTComposite node) {
+            return node.Accept(this);
+        }
+
         public T VisitChildren(ASTComposite node)
         {
             for (int i = 0; i < node.MChildren.Length; i++){

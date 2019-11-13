@@ -57,6 +57,7 @@
       <DependentUpon>first.g4</DependentUpon>
     </Compile>
     <Compile Include="GraphvizPrinterVisitor.cs" />
+    <None Include="bin\Debug\test.dot" />
     <None Include="obj\Debug\firstBaseListener.cs" />
     <None Include="obj\Debug\firstBaseVisitor.cs" />
     <None Include="obj\Debug\firstLexer.cs" />
@@ -84,6 +85,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\test.dot.gif" />
     <Content Include="bin\Debug\test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
