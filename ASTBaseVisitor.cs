@@ -33,11 +33,6 @@ namespace ANTLR_Startup_Project {
             return default(T);
         }
 
-        public virtual T VisitCOMPILEUNIT(CASTCompileUnit node) {
-            VisitChildren(node);
-            return default(T);
-        }
-
         public virtual T VisitAddition(CASTAddition node) {
             VisitChildren(node);
             return default(T);
