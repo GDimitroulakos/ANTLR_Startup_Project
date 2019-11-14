@@ -8,16 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ANTLR_Startup_Project {
+
+    /*
+    Αύτή η κλάση είναι υπεύθυνη για την παραγωγή του κώδηκα για το graphviz, του αφηρημένου συντακτικού δέντρου. 
+    */
+
+
     class ASTPrinter :ASTBaseVisitor<int> {
         private static int m_clusterSerial=0;
         private StreamWriter m_ostream;
         private string m_dotName;
 
+        // Constructor
         public ASTPrinter(string dotFileName) {
             m_ostream = new StreamWriter(dotFileName);
             m_dotName = dotFileName;
         }
 
+        /// ###########################################################################|
+        /// ExtractSubgraphs ##########################################################|
+        /// ###########################################################################|
+        /// Αυτή η μέδοδος χωρίζει τα παιδιά σε περιοχές, ανάλογα με τον γωνέα τους ###|
+        /// ###########################################################################|
         private void ExtractSubgraphs(ASTComposite node,contextType context) {
             if (node.MChildren[node.GetContextIndex(context)].Count != 0) {
                 m_ostream.WriteLine("\tsubgraph cluster" + m_clusterSerial++ + "{");
